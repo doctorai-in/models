@@ -10,5 +10,5 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo hello world
-          pip install -r requirements.txt
+          docker run --rm -i -t=false doctorai/object-detection-api /bin/bash
           
