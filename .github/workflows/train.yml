@@ -2,12 +2,13 @@ name: farmers
 on: [push]
 jobs:
   run:
-    runs-on: [self-hosted]
+    runs-on: [self-hosted,gcp-google]
     steps:
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo hello world
-          docker run --rm -i -t=false -v ~/.aws:/home/tensorflow/.aws object-detection-api python object_detection/model_main_tf2.py --model_dir=s3://object-detection-pipeline-demo/pre-trained-models/ssd_mobilenet_v2_320x320_coco17_tpu-8 --pipeline_config_path=s3://object-detection-pipeline-demo/pre-trained-models/ssd_mobilenet_v2_320x320_coco17_tpu-8/pipeline.config --checkpoint_dir=models/my_ssd_resnet50_v1_fpn
+          cd ~/models/research
+          python object_detection/model_main_tf2.py --model_dir=gs://kubeflow-test-299509-kubeflowpipelines-default/pre-trained-models/ssd_mobilenet_v2_320x320_coco17_tpu-8 --pipeline_config_path=gs://kubeflow-test-299509-kubeflowpipelines-default/pre-trained-models/ssd_mobilenet_v2_320x320_coco17_tpu-8/pipeline.config --checkpoint_dir=gs://kubeflow-test-299509-kubeflowpipelines-default/models/my_ssd_resnet50_v1_fpn
           
