@@ -3,7 +3,6 @@ on: [push]
 jobs:
   run:
     runs-on: [self-hosted]
-    container: docker://doctorai/object-detection-api:latest
     steps:
       - name: cml_run
         env:
