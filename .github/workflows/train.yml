@@ -2,7 +2,7 @@ name: farmers
 on: [push]
 jobs:
   run:
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted]
     container: docker://doctorai/object-detection-api:latest
     steps:
       - name: cml_run
